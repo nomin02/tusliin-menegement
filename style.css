@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif; /
+}
+
+.container {
+    background-color: #e2b9ec;
+    width: 500px;
+    padding: 25px;
+    margin: 50px auto 0;
+    border-top: 15px solid blue;
+    box-shadow: 0 0 7px 5px rgba(0, 0, 0, 0.5);
+}
+
+.container h2 {
+    font-size: 24px;
+    line-height: 24px;
+    padding: 30px;
+    text-align: center;
+}
+
+.e {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.input-name {
+    width: 90%;
+    position: relative;
+    margin: 20px auto;
+}
+
+.lock {
+    padding: 8px 11px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px 0;
+    margin: 10px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.button {
+    width: 48%;
+}
+
