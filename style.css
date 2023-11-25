@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif; /
+    font-family: Arial, sans-serif;
 }
 
 .container {
@@ -52,3 +52,7 @@ select {
     width: 48%;
 }
 
+.register-link {
+    margin-top: 10px;
+    text-align: center;
+}

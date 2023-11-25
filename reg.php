@@ -8,28 +8,36 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     
     <script>
+    function validateForm() {
+        var studentID = document.forms["registrationForm"]["ocode"].value;
+        var regex = /^[a-zA-Z]{2}\d{2}[a-zA-Z]\d{3}$/;
+        var errorMessageElement = document.getElementById("studentIDErrorMessage");
 
-        function validateForm() {
-    var studentID = document.forms["registrationForm"]["ocode"].value;
+        if (!regex.test(studentID)) {
+            errorMessageElement.innerText = "Incorrect student ID format. Please check and try again.";
+            errorMessageElement.style.display = "block";
+            return false;
+        } else {
+            errorMessageElement.style.display = "none";
+        }
 
-    // Check if the student ID has the expected format (adjust as needed)
-    var regex = /^[a-zA-Z]{2}\d{2}[a-zA-Z]\d{3}$/;
-;
-    if (!regex.test(studentID)) {
-        alert("Incorrect student ID format. Please check and try again.");
-        return false;
+        var password = document.forms["registrationForm"]["p"].value;
+        var confirmPassword = document.forms["registrationForm"]["cp"].value;
+
+        if (password !== confirmPassword) {
+            alert("Password and Confirm Password must match");
+            return false;
+        }
+
+        // Add additional password strength checks if needed
+
+        return true;
     }
 
-    var password = document.forms["registrationForm"]["p"].value;
-    var confirmPassword = document.forms["registrationForm"]["cp"].value;
-
-    if (password !== confirmPassword) {
-        alert("Password and Confirm Password must match");
-        return false;
+    function confirmCancel() {
+        return confirm("Are you sure you want to cancel registration?");
     }
-}
-
-    </script>
+</script>
 </head>
 
 <body style="background-color:#BB8FCE;">
@@ -74,8 +82,10 @@
                 </div>
 
                 <div class="input-name">
-                    <input type="text" name="ocode" id="ocode" placeholder="Student id" class="text-name">
-                </div>
+    
+    <input type="text" name="ocode" id="ocode" placeholder="Student ID" class="text-name">
+    <span id="studentIDErrorMessage" class="e" style="display: none;"></span>
+</div>
 
                 <div class="input-name">
                     <input type="password" name="p" placeholder="Password" class="text-name">
@@ -84,6 +94,7 @@
                 <div class="input-name">
                     <input type="password" name="cp" id="cp" placeholder="Confirm password" class="text-name">
                 </div>
+                
 
                 <div class="input-name">
                     <input type="submit" name="submit" value="Sign up" class="button">

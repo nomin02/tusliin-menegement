@@ -18,7 +18,7 @@
                         <input type="text" name="student_code" placeholder="Student ID" class="text-name">
                     </div>
 
-                    <div class="input-name" >
+                    <div class="input-name">
                         <input type="password" name="pass" placeholder="Password" class="text-name">
                         <?php
                         session_start();
@@ -27,12 +27,12 @@
                             unset($_SESSION["error"]); // Clear the session variable after displaying the message
                         }
                         ?>
+                        <p class="register-link">Don't have an account? <a href="reg.php">Register here</a></p>
                     </div>
                 </div>
 
-                <div class="button-container">
-                    <input type="submit" name="login" value="Login" onclick="location.href='./saruul/index.php'; class="button">
-                   
+                <div class="input-name">
+                    <input type="submit" name="login" value="Login" onclick="location.href='./saruul/index.php';" class="button">
                 </div>
             </form>
         </div>

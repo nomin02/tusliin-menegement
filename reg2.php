@@ -18,29 +18,34 @@ if (isset($_POST["submit"])) {
     $ocode = isset($_POST["ocode"]) ? mysqli_real_escape_string($conn, $_POST["ocode"]) : '';
     $p = isset($_POST["p"]) ? mysqli_real_escape_string($conn, $_POST["p"]) : '';
 
-    
     $stmt = $conn->prepare("INSERT INTO student (firstname, lastname, course, class_n, student_code, pass) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssss", $fname, $lname, $kurs, $merg, $ocode, $p);
 
-  
-    $stmt->execute();
+    try {
+        $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
-
-       
-        echo '<script>alert("Registration successful. Redirecting to login form.");</script>';
-
-      
-        echo '<script>
-                setTimeout(function() {
-                    window.location.href = "login.php";
-                }, 2000); // 2000 milliseconds (2 seconds) delay
-              </script>';
-        exit();
-    } else {
-       
-        error_log("Error: " . $stmt->error);
-        echo "Error: Unable to insert data.";
+        if ($stmt->affected_rows > 0) {
+            // Registration successful
+            echo '<script>alert("Registration successful. Redirecting to login form.");';
+            echo 'window.location.href = "login.php";</script>';
+            exit();
+        }
+    } catch (mysqli_sql_exception $e) {
+        // Handle specific error codes
+        if ($e->getCode() == 1062) {
+            echo '<script>';
+            echo 'alert("Student ID is already registered. Please use a different Student ID.");';
+            echo 'window.location.href = "reg.php";';
+            echo '</script>';
+            exit();
+        } else {
+            // General error
+            echo '<script>';
+            echo 'alert("Error: ' . $e->getMessage() . '");';
+            echo 'window.location.href = "reg.php";';
+            echo '</script>';
+            exit();
+        }
     }
 
     $stmt->close();
