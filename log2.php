@@ -25,7 +25,7 @@ if (isset($_POST["login"])) {
         // Login successful
         $_SESSION["loggedin"] = true;
         $_SESSION["student_code"] = $s_id;
-        header("Location: ../nomin/index.php"); // Redirect to welcome page or dashboard
+        header("Location: ../saruul/myacc.php"); // Redirect to welcome page or dashboard
         exit();
     } else {
         // Login failed
